@@ -25,6 +25,7 @@ Module.register('MMM-YrThen', {
     },
 
     start: function() {
+        Log.info('Starting module ' + this.name);
         this.list = null;
         this.loaded = false;
         var forecastUrl = printf(printf('%s', this.config.yrApiUrl),this.config.locationId);
@@ -38,12 +39,15 @@ Module.register('MMM-YrThen', {
 
     socketNotificationReceived: function(notification, payload) {
         if(notification === 'YR_FORECAST_DATA') {
+            Log.info('Got forecast');
             this.processForecast(payload.forecast);
             this.updateDom(1000);
+
         }
     },
 
     getForecast: function(url) {
+        log.info('Getting forecast ...');
         this.sendSocketNotification('GET_YR_FORECAST', {
             forecastUrl: url,
             config: this.config
