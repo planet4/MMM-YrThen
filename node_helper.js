@@ -20,7 +20,7 @@ module.exports = NodeHelper.create({
 	getForecast: function() {
 		var self = this;
         var locationData = {};
-        var nowcastUrl = this.forecastUrl + '/now';
+        var nowcastUrl = this.forecastUrl;
 
         request({url: nowcastUrl, method: 'GET'}, function(error, response, message) {
             if (!error && (response.statusCode == 200 || response.statusCode == 304)) {
