@@ -34,7 +34,7 @@ Module.register('MMM-YrThen', {
         var dummyText = 'Nothing loaded yet ...';
 
         setInterval(function() {
-            self.updateDom(1000);
+            self.updateDom(10000);
         }, 60000);
     },
 
@@ -42,7 +42,7 @@ Module.register('MMM-YrThen', {
         if(notification === 'YR_FORECAST_DATA') {
             Log.info('Got forecast');
             this.processForecast(payload.forecast);
-            this.updateDom(1000);
+            this.updateDom(10000);
 
         }
     },
@@ -67,9 +67,9 @@ Module.register('MMM-YrThen', {
         }
         var forecast = document.createElement('div');
         forecast.className = 'forecast';
+        forecast.innerHTML = makeForecast();
 
         wrapper.appendChild(forecast);
-        wrapper.appendChild(this.makeForecast());
         return wrapper;
     },
 
