@@ -67,7 +67,7 @@ Module.register('MMM-YrThen', {
         }
         var forecast = document.createElement('div');
         forecast.className = 'forecast';
-        forecast.innerHTML = makeForecast();
+        forecast.innerHTML = this.makeForecast();
 
         wrapper.appendChild(forecast);
         return wrapper;
