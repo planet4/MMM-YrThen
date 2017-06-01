@@ -1,5 +1,6 @@
 Module.register('MMM-YrThen', {
     defaults: {
+        location: "1-2296935",
         yrApiUrl: "https://www.yr.no/api/v0/locations/id/%s/forecast",
         updateInterval: 10000
     },
