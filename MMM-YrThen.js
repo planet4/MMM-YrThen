@@ -47,7 +47,7 @@ Module.register('MMM-YrThen', {
     },
 
     getForecast: function(url) {
-        log.info('Getting forecast ...');
+        Log.info('Getting forecast ...');
         this.sendSocketNotification('GET_YR_FORECAST', {
             forecastUrl: url,
             config: this.config
