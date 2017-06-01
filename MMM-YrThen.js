@@ -73,8 +73,8 @@ Module.register('MMM-YrThen', {
         return wrapper;
     },
 
-    makeForecast(): function(){
-        return this.dummyText;        
+    makeForecast: function() {
+        return this.dummyText;
     }
 
     processForecast: function(obj) {
