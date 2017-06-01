@@ -31,6 +31,7 @@ Module.register('MMM-YrThen', {
         var forecastUrl = printf(printf('%s', this.config.yrApiUrl),this.config.locationId);
         this.getForecast(forecastUrl);
         var self = this;
+        var dummyText = 'Nothing loaded yet ...';
 
         setInterval(function() {
             self.updateDom(1000);
@@ -67,49 +68,22 @@ Module.register('MMM-YrThen', {
         var forecast = document.createElement('div');
         forecast.className = 'forecast';
 
-        forecast.appendChild(this.getWeatherSymbol());
         wrapper.appendChild(forecast);
-        wrapper.appendChild(this.getTemperature());
-        wrapper.appendChild(this.createNowcastText(nowCast));
+        wrapper.appendChild(this.makeForecast());
         return wrapper;
     },
 
-    getWeatherSymbol: function() {
-        var symbol = document.createElement('img');
-        symbol.className = 'weatherSymbol';
-        symbol.src = this.file(printf('images/%s.svg', this.weatherSymbol));
-        return symbol;
-    },
-
-    getTemperature: function() {
-        var temp = document.createElement('div');
-        temp.className = 'temperature light large bright';
-        temp.innerHTML = printf('%s°', Math.round(this.temperature));
-        return temp;
-    },
-
-    calculateWeatherSymbolId: function(data) {
-        if (!data) return '';
-        let id = data.n < 10 ? printf('0%s', data.n) : data.n;
-        switch (data.var) {
-            case 'Sun':
-            id += 'd';
-            break;
-            case 'PolarNight':
-            id += 'm';
-            break;
-            case 'Moon':
-            id += 'n';
-            break;
-        }
-        return id;
-    },
+    makeForecast(): function(){
+        return this.dummyText;        
+    }
 
     processForecast: function(obj) {
-        if(obj.shortIntervals) {
+        Log.info('Processing forecast ...');
+        this.dummyText = JSON.stringify(obj.longIntervals);
+/*        if(obj.shortIntervals) {
             this.weatherSymbol = this.calculateWeatherSymbolId(obj.shortIntervals[0].symbol);
             this.temperature = obj.shortIntervals[0].temperature.value;
             this.loaded = true;
-        }
+        } */
     }
 });
