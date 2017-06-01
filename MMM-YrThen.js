@@ -75,7 +75,7 @@ Module.register('MMM-YrThen', {
 
     makeForecast: function() {
         return this.dummyText;
-    }
+    },
 
     processForecast: function(obj) {
         Log.info('Processing forecast ...');
