@@ -80,13 +80,8 @@ Module.register('MMM-YrThen', {
     processForecast: function(obj) {
         Log.info('Processing forecast ...');
         if(obj.longIntervals){
-            this.dummyText = JSON.stringify(obj.longIntervals);
+            this.dummyText = obj.longIntervals;
             this.loaded = true;
         }
-/*        if(obj.shortIntervals) {
-            this.weatherSymbol = this.calculateWeatherSymbolId(obj.shortIntervals[0].symbol);
-            this.temperature = obj.shortIntervals[0].temperature.value;
-            this.loaded = true;
-        } */
     }
 });
