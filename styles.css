@@ -1,45 +1,27 @@
-.precipText {
-    margin: 0px;
-    white-space: nowrap;
-}
-
-.animation {
-    vertical-align: middle;
-}
-
-img.umbrella {
-    width: 90px;
-    margin-bottom: 10px;
-}
-
-.forecast {
+.yrThenForecast {
     display: inline-block;
-    width: 150px;
 }
 
-.forecast img, .forecast span {
-    position: relative;
-    display: inline-block;
-    padding-right: 20px;
-    vertical-align: middle;
+.yrthen .yrthen-icon {
+  width: 40px;
 }
 
-img.weatherSymbol {
-    width: 150px;
+.yrthen .yrthen-day {
+  padding-left: 0;
+  padding-right: 25px;
 }
 
-.temperature {
-    display: inline-block;
-    vertical-align: middle;
+.yrthen .yrthen-icon-cell {
+  padding-right: 10px;
+  text-align: center;
 }
 
-#rain {
-  height: 70px;
-  width: 74px;
-  margin-bottom: -20px;
+.yrthen .yrthen-temp {
+  padding-left: 20px;
+  padding-right: 0;
 }
 
-#rain--1, #rain--2, #rain--3 {
-  fill: #00B9F1;
-  -webkit-transition: opacity 600ms cubic-bezier(0.645, 0.045, 0.355, 1);
+.yrthen .yrthen-rain {
+  padding-left: 20px;
+  padding-right: 0;
 }
