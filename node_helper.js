@@ -3,7 +3,7 @@ var request = require('request');
 
 module.exports = NodeHelper.create({
     start: function() {
-        console.log('Starting node helper for: ' + this.name);
+        Log.info('Starting node helper for: ' + this.name);
         this.config = null;
         this.forecastUrl = '';
     },
@@ -13,11 +13,11 @@ module.exports = NodeHelper.create({
         if(notification === 'GET_YR_FORECAST') {
             self.config = payload.config;
             self.forecastUrl = payload.forecastUrl;
-            this.getForecast();
+            this.getForecastFromYr();
         }
     },
 
-    getForecast: function() {
+    getForecastFromYr: function() {
         var self = this;
         var locationData = {};
 
