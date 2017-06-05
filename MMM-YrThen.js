@@ -2,12 +2,13 @@ Module.register('MMM-YrThen', {
     defaults: {
         location: "1-2296935",
         yrApiUrl: "https://www.yr.no/api/v0/locations/id/%s/forecast",
-        updateInterval: 60000,
+        yrCelestialApiUrl: "https://www.yr.no//api/v0/locations/%s/celestialevent",
+        updateInterval: 3600000,
         initialLoadDelay: 1000,
         details: true,
         numDetails: 2,
         title: 'Værmelding for Steinkjer',
-        header: true
+        header: false
     },
 
     getTranslations: function() {
@@ -84,7 +85,8 @@ Module.register('MMM-YrThen', {
                 row.appendChild(iconCell);
 
                 var icon = document.createElement("img");
-                icon.className = "yrthen-icon";
+                icon.className = "yrthen-icon ";
+                icon.width = "40";
                 var weatherSymbol = this.calculateWeatherSymbolId(newData.symbol);
                 icon.src = this.file(printf('images/%s.svg', weatherSymbol));
                 iconCell.appendChild(icon);
@@ -109,7 +111,7 @@ Module.register('MMM-YrThen', {
     updateForecast: function() {
         Log.info('Updating forecast now');
         var forecastUrl = printf(printf('%s', this.config.yrApiUrl),this.config.locationId);
-        this.sendSocketNotification('GET_YR_FORECAST', {
+        this.sendSocketNotification('GET_YRTHEN_FORECAST', {
             forecastUrl: forecastUrl,
             config: this.config.updateInterval
         });
@@ -144,7 +146,7 @@ Module.register('MMM-YrThen', {
     },
 
     socketNotificationReceived: function(notification, payload) {
-        if(notification === 'YR_FORECAST_DATA') {
+        if(notification === 'YRTHEN_FORECAST_DATA') {
             Log.info('Got forecast');
             this.processForecast(payload.forecast);
             this.updateDom(1000);
