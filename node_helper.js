@@ -10,27 +10,27 @@ module.exports = NodeHelper.create({
 
     socketNotificationReceived: function(notification, payload) {
         var self = this;
-        if(notification === 'GET_YR_FORECAST') {
+        if(notification === 'GET_YRTHEN_FORECAST') {
             self.config = payload.config;
             self.forecastUrl = payload.forecastUrl;
-            this.getForecastFromYr();
+            this.getForecastFromYrThen();
         }
     },
 
-    getForecastFromYr: function() {
+    getForecastFromYrThen: function() {
         var self = this;
         var locationData = {};
 
         request({url: self.forecastUrl, method: 'GET'}, function(error, response, message) {
             if (!error && (response.statusCode == 200 || response.statusCode == 304)) {
                 locationData.forecast = JSON.parse(message);
-                self.sendSocketNotification('YR_FORECAST_DATA', locationData);
+                self.sendSocketNotification('YRTHEN_FORECAST_DATA', locationData);
             }
             setTimeout(function() { self.getForecast(); }, self.config.updateInterval);
         });
     },
 
-    setNextUpdate: function(headers) {
+    setNextUpdateYrThen: function(headers) {
         var cacheControlHeader = headers['cache-control'];
         var maxAge = cacheControlHeader.slice(cacheControlHeader.indexOf('=') + 1);
         this.config.updateInterval = maxAge * 1000;
