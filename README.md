@@ -1,10 +1,10 @@
 # MagicMirror² Module: YrThen
 
-This will be an unofficial Yr Weather Forecast module for [MagicMirror²](https://github.com/MichMich/MagicMirror), which displays data from [Yr](https://www.yr.no/nb/).
+This is an unofficial Yr Weather Forecast module for [MagicMirror²](https://github.com/MichMich/MagicMirror), which displays data from [Yr](https://www.yr.no/nb/).
 
-It is based on [MMM-YrNow](https://github.com/YR/MMM-YrNow), from Yr itself. Yr is a weather service from the Norwegian Broadcasting Corporation and the Norwegian Meteorological Institute.
+It is heavily based on [MMM-YrNow](https://github.com/YR/MMM-YrNow), from Yr itself. Yr is a weather service from the Norwegian Broadcasting Corporation and the Norwegian Meteorological Institute.
 
-This is a work in progress, and might never be ready for release.
+This is work in progress, but as it stands right now it's working and covering my needs.
 
 ## How to install
 
@@ -23,7 +23,6 @@ Add the module to the modules array in the config/config.js file by adding the f
 		position: 'top_right',
 		config: {
 			locationId: '1-2296935',
-            showWeatherForecast: true
 		}
 	},
 
@@ -40,9 +39,34 @@ Add the module to the modules array in the config/config.js file by adding the f
 		<td>The unique Id found in the Url of any location on <a href="https://www.yr.no/nb/liste/dag/1-2296935/Norge/Nord-Trøndelag/Steinkjer/Steinkjer">Yr</a> I.e. Steinkjer.</td>
 		<td>1-2296935</td>
 	</tr>
-    <tr>
-        <td>showWeatherForecast</td>
-        <td>If there's no precipitation in the nowcast, the weather forecast for the next period is shown.</td>
-        <td>true</td>
-    </tr>
+	<tr>
+		<td>updateInterval</td>
+		<td>How often to get new data. Defaults to 1 hour, as the weather forecast doesn't really change too often.</td>
+		<td>3600000</td>
+	</tr>
+	<tr>
+		<td>initialLoadDelay</td>
+		<td>Dunno why, but thought it was a good idea to give it some rest before we start. Defaults to 1 sec.</td>
+		<td>1000</td>
+	</tr>
+	<tr>
+		<td>details</td>
+		<td>Show detailed weather forecast. If false, it only shows the forecast around midday (12.00). If true, it shows detailed forecast numDetails times.</td>
+		<td>true</td>
+	</tr>
+	<tr>
+		<td>numDetails</td>
+		<td>How many detailed forecasts to show. Default is next two periods.</td>
+		<td>2</td>
+	</tr>
+	<tr>
+		<td>title</td>
+		<td>Title for the module, if shown.</td>
+		<td>Værmelding for Steinkjer</td>
+	</tr>
+	<tr>
+		<td>header</td>
+		<td>Show header or not. Contents of header is title.</td>
+		<td>false</td>
+	</tr>
 </table>
