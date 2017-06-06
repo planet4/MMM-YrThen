@@ -1,3 +1,4 @@
+// Reminder to self: tail -f ~/.pm2/logs/MagicMirror-out-0.log
 var NodeHelper = require('node_helper');
 var request = require('request');
 
