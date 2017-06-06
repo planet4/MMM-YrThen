@@ -3,7 +3,6 @@ var request = require('request');
 
 module.exports = NodeHelper.create({
     start: function() {
-        Log.info('Starting node helper for: ' + this.name);
         this.config = null;
         this.forecastUrl = '';
     },
