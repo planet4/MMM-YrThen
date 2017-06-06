@@ -20,6 +20,8 @@ module.exports = NodeHelper.create({
         var n = d.toLocaleDateString() + " " + d.toLocaleTimeString();
         console.log("MMM-YrThen " + n + ": Received notification");
         if(notification === 'GET_YRTHEN_FORECAST') {
+            var d = new Date();
+            var n = d.toLocaleDateString() + " " + d.toLocaleTimeString();
             console.log("MMM-YrThen: Received GET_YRTHEN_FORECAST notification");
             self.config = payload.config;
             self.forecastUrl = payload.forecastUrl;
