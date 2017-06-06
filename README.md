@@ -22,7 +22,7 @@ Add the module to the modules array in the config/config.js file by adding the f
 		module: 'MMM-YrThen',
 		position: 'top_right',
 		config: {
-			locationId: '1-2296935',
+			location: '1-2296935',
 		}
 	},
 
