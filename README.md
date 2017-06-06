@@ -1,6 +1,6 @@
 # MagicMirror² Module: YrThen
 
-This is an unofficial Yr Weather Forecast module for [MagicMirror²](https://github.com/MichMich/MagicMirror), which displays data from [Yr](https://www.yr.no/nb/).
+<img src="/images/screenshot.png" align="right"/>This is an unofficial Yr Weather Forecast module for [MagicMirror²](https://github.com/MichMich/MagicMirror), which displays data from [Yr](https://www.yr.no/nb/).
 
 It is heavily based on [MMM-YrNow](https://github.com/YR/MMM-YrNow), from Yr itself. Yr is a weather service from the Norwegian Broadcasting Corporation and the Norwegian Meteorological Institute.
 
@@ -35,7 +35,7 @@ Add the module to the modules array in the config/config.js file by adding the f
 		<th>Default</th>
 	</tr>
 	<tr>
-		<td>locationId</td>
+		<td>location</td>
 		<td>The unique Id found in the Url of any location on <a href="https://www.yr.no/nb/liste/dag/1-2296935/Norge/Nord-Trøndelag/Steinkjer/Steinkjer">Yr</a> I.e. Steinkjer.</td>
 		<td>1-2296935</td>
 	</tr>
