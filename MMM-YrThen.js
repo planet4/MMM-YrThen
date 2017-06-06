@@ -110,7 +110,7 @@ Module.register('MMM-YrThen', {
 
     updateForecast: function() {
         Log.info('Updating forecast now');
-        var forecastUrl = printf(printf('%s', this.config.yrApiUrl),this.config.locationId);
+        var forecastUrl = printf(printf('%s', this.config.yrApiUrl),this.config.location);
         this.sendSocketNotification('GET_YRTHEN_FORECAST', {
             forecastUrl: forecastUrl,
             config: this.config.updateInterval
