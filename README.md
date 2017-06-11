@@ -1,6 +1,6 @@
 # MagicMirror² Module: YrThen
 
-<img src="/images/MMM-YrThen-screenshot.png" align="right"/>This is an unofficial Yr Weather Forecast module for [MagicMirror²](https://github.com/MichMich/MagicMirror), which displays data from [Yr](https://www.yr.no/nb/).
+<img src="/images/newShot.png" align="right"/>This is an unofficial Yr Weather Forecast module for [MagicMirror²](https://github.com/MichMich/MagicMirror), which displays data from [Yr](https://www.yr.no/nb/).
 
 It is heavily based on [MMM-YrNow](https://github.com/YR/MMM-YrNow), from Yr itself. Yr is a weather service from the Norwegian Broadcasting Corporation and the Norwegian Meteorological Institute.
 
@@ -50,13 +50,28 @@ Add the module to the modules array in the config/config.js file by adding the f
 		<td>1000</td>
 	</tr>
 	<tr>
+		<td>showAll</td>
+		<td>Show all four periods of each day or not.</td>
+		<td>true</td>
+	</tr>
+	<tr>
+		<td>showPrecipitation</td>
+		<td>If showAll is true, show precipitation as well?</td>
+		<td>true</td>
+	</tr>
+	<tr>
+		<td>showMaxMin</td>
+		<td>If showAll is true, show maximum and minimum temperature?</td>
+		<td>false</td>
+	</tr>
+	<tr>
 		<td>details</td>
-		<td>Show detailed weather forecast. If false, it only shows the forecast around midday (12.00). If true, it shows detailed forecast numDetails times.</td>
+		<td>If showAll is false, show detailed weather forecast? If false, it only shows the forecast around midday (12.00). If true, it shows detailed forecast numDetails times.</td>
 		<td>true</td>
 	</tr>
 	<tr>
 		<td>numDetails</td>
-		<td>How many detailed forecasts to show. Default is next two periods.</td>
+		<td>How many detailed forecasts to show. Default is next two periods. Only applies if showAll is false and details is true.</td>
 		<td>2</td>
 	</tr>
 	<tr>
