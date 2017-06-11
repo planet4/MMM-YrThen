@@ -7,7 +7,7 @@ Module.register('MMM-YrThen', {
         initialLoadDelay: 1000,
         showAll: true,
         showPrecipitation: true,
-        showMaxMin: true,
+        showMaxMin: false,
         details: true,
         numDetails: 2,
         title: 'Værmelding for Steinkjer',
