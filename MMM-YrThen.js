@@ -30,7 +30,7 @@ Module.register('MMM-YrThen', {
 
     getStyles: function() {
         return [
-            'styles.css'
+            'MMM-YrThen.css'
         ];
     },
 
@@ -72,12 +72,12 @@ Module.register('MMM-YrThen', {
             table.appendChild(timeRow);
             for(var i = 0; i < 5; i++){
                 var newCell = document.createElement('td');
-                newCell.className = 'yrthen-time-cell align-center bright small';
+                newCell.className = 'align-left bright xsmall';
                 if(i == 0) newCell.innerHTML = '&nbsp;';
-                if(i == 1) newCell.innerHTML = '00';
-                if(i == 2) newCell.innerHTML = '06';
-                if(i == 3) newCell.innerHTML = '12';
-                if(i == 4) newCell.innerHTML = '18';
+                if(i == 1) newCell.innerHTML = this.translate("night");
+                if(i == 2) newCell.innerHTML = this.translate("morning");
+                if(i == 3) newCell.innerHTML = this.translate("afternoon");
+                if(i == 4) newCell.innerHTML = this.translate("evening");
                 timeRow.appendChild(newCell);
             }
 
@@ -110,16 +110,16 @@ Module.register('MMM-YrThen', {
                 if(!this.config.showMaxMin){
                     forecastCell.innerHTML += '<br>';
                 }
-                forecastCell.innerHTML += ' <span class="bright yrthen-temp small">' + newData.temperature.value + '</span>';
+                forecastCell.innerHTML += ' <span class="bright small">' + newData.temperature.value + '</span>';
                 if(this.config.showMaxMin){
                     forecastCell.innerHTML += '<br>';
                 }
 
                 if(newData.temperature.min && newData.temperature.max && this.config.showMaxMin){
-                    forecastCell.innerHTML += '<span class="dimmed yrthen-temp">(' + newData.temperature.max + '/' + newData.temperature.min + ')</span><br>';
+                    forecastCell.innerHTML += '<span class="dimmed">(' + newData.temperature.max + '/' + newData.temperature.min + ')</span><br>';
                 }
                 if(this.config.showPrecipitation){
-                    var precValue = ' <span class="yrthen-rain dimmed">(' + newData.precipitation.value;
+                    var precValue = ' <span class="dimmed">(' + newData.precipitation.value;
                     if(this.config.showMaxMin){
                         precValue += ' mm';
                     }
