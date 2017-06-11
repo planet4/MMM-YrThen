@@ -50,7 +50,7 @@ Module.register('MMM-YrThen', {
     getDom: function() {
         var wrapper = document.createElement('div');
         if(!this.loaded){
-            wrapper.innerHTML = this.translate('LOADING');
+            wrapper.innerHTML = this.translate('loading');
             wrapper.className = "dimmed light small";
             return wrapper;
         }
