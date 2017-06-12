@@ -22,9 +22,11 @@ Add the module to the modules array in the config/config.js file by adding the f
 		module: 'MMM-YrThen',
 		position: 'top_right',
 		config: {
-			location: '1-2296935',
+			location: '1-2820936',
 		}
 	},
+
+Find your location using the search form at <a href="https://www.yr.no/nb/liste/dag/1-2820936/Norge/Nord-Trøndelag/Steinkjer/Skrubblivegen">this Yr.no page</a>.
 
 ## Configuration options
 
@@ -36,7 +38,7 @@ Add the module to the modules array in the config/config.js file by adding the f
 	</tr>
 	<tr>
 		<td>location</td>
-		<td>The unique Id found in the Url of any location on <a href="https://www.yr.no/nb/liste/dag/1-2296935/Norge/Nord-Trøndelag/Steinkjer/Steinkjer">Yr</a> I.e. Steinkjer.</td>
+		<td>The unique Id found in the Url of any location on <a href="https://www.yr.no/nb/liste/dag/1-2820936/Norge/Nord-Trøndelag/Steinkjer/Skrubblivegen">Yr.no</a>. Default location is Skrubblivegen in Steinkjer, Norway.</td>
 		<td>1-2296935</td>
 	</tr>
 	<tr>
@@ -75,9 +77,19 @@ Add the module to the modules array in the config/config.js file by adding the f
 		<td>2</td>
 	</tr>
 	<tr>
+		<td>roundTemp</td>
+		<td>Round temperature to zero decimals.</td>
+		<td>true</td>
+	</tr>
+	<tr>
+		<td>roundPrec</td>
+		<td>Round precipitation to zero decimals.</td>
+		<td>2</td>
+	</tr>
+	<tr>
 		<td>title</td>
 		<td>Title for the module, if shown.</td>
-		<td>Værmelding for Steinkjer</td>
+		<td>Værmelding for Skrubblivegen</td>
 	</tr>
 	<tr>
 		<td>header</td>
