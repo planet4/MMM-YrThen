@@ -1,6 +1,6 @@
 Module.register('MMM-YrThen', {
     defaults: {
-        location: "1-2296935",
+        location: "1-2820936",
         yrApiUrl: "https://www.yr.no/api/v0/locations/id/%s/forecast",
         yrCelestialApiUrl: "https://www.yr.no//api/v0/locations/%s/celestialevent",
         updateInterval: 3600000,
@@ -10,7 +10,9 @@ Module.register('MMM-YrThen', {
         showMaxMin: false,
         details: true,
         numDetails: 2,
-        title: 'Værmelding for Steinkjer',
+        roundTemp: true,
+        roundPrec: false,
+        title: 'Værmelding for Skrubblivegen',
         header: false
     },
 
@@ -127,7 +129,9 @@ Module.register('MMM-YrThen', {
                 if(!this.config.showMaxMin){
                     forecastCell.innerHTML += '<br>';
                 }
-                forecastCell.innerHTML += ' <span class="bright small">' + newData.temperature.value + '</span>';
+                if(this.config.roundTemp) tempValue = Math.round(newData.temperature.value);
+                else tempValue = newData.temperature.value;
+                forecastCell.innerHTML += ' <span class="bright small">' + tempValue + '</span>';
                 if(this.config.showMaxMin){
                     forecastCell.innerHTML += '<br>';
                 }
@@ -136,7 +140,9 @@ Module.register('MMM-YrThen', {
                     forecastCell.innerHTML += '<span class="dimmed">(' + newData.temperature.max + '/' + newData.temperature.min + ')</span><br>';
                 }
                 if(this.config.showPrecipitation){
-                    var precValue = ' <span class="dimmed">(' + newData.precipitation.value;
+                    var precValue = ' <span class="dimmed">(';
+                    if(this.config.roundPrec) precValue += Math.round(newData.precipitation.value);
+                    else precValue += newData.precipitation.value;
                     if(this.config.showMaxMin){
                         precValue += ' mm';
                     }
@@ -191,6 +197,7 @@ Module.register('MMM-YrThen', {
 
 
         wrapper.appendChild(table);
+        this.loaded = true;
         return wrapper;
     },
 
