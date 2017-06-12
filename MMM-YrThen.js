@@ -65,9 +65,10 @@ Module.register('MMM-YrThen', {
 
         var table = document.createElement('table');
         table.className = "xsmall yrthen yrThenForecast";
-        var day;
 
         if(this.config.showAll == true){
+            var day;
+            var first = true;
             var timeRow = document.createElement('tr');
             table.appendChild(timeRow);
             for(var i = 0; i < 5; i++){
@@ -97,10 +98,26 @@ Module.register('MMM-YrThen', {
                     row.appendChild(dayCell);
                     day = today;
                 }
-
+                if(first == true){
+                    if(checkTime >= "06"){
+                        var emptyCell = document.createElement("td");
+                        emptyCell.innerHTML = "&nbsp;";
+                        row.appendChild(emptyCell);
+                    }
+                    if(checkTime >= "12"){
+                        var emptyCell = document.createElement("td");
+                        emptyCell.innerHTML = "&nbsp;";
+                        row.appendChild(emptyCell);
+                    }
+                    if(checkTime >= "18"){
+                        var emptyCell = document.createElement("td");
+                        emptyCell.innerHTML = "&nbsp;";
+                        row.appendChild(emptyCell);
+                    }
+                }
+                first = false;
                 var forecastCell = document.createElement("td");
                 forecastCell.className = "yrthen-forecast-cell";
-//                forecastCell.innerHTML = '<span class="dimmed">' + moment(newData.start).format("HH") + '</span><br>';
                 var icon = document.createElement("img");
                 icon.className = "yrthen-icon ";
                 icon.width = "40";
