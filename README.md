@@ -26,7 +26,7 @@ Add the module to the modules array in the config/config.js file by adding the f
 		}
 	},
 
-Find your location using the search form at <a href="https://www.yr.no/nb/liste/dag/1-2820936/Norge/Nord-Trøndelag/Steinkjer/Skrubblivegen">this Yr.no page</a>.
+Find your location using the search form at <a href="https://www.yr.no/nb/liste/dag/1-2820936/Norge/Nord-Trøndelag/Steinkjer/Skrubblivegen">this Yr.no page</a> and look for the ID in the URL.
 
 ## Configuration options
 
