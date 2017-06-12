@@ -1,27 +1,34 @@
-.yrThenForecast {
+.yrthen-table {
     display: inline-block;
 }
 
-.yrthen .yrthen-icon {
+.yrthen-icon {
   width: 40px;
 }
 
-.yrthen .yrthen-day {
+.yrthen-header {
+  text-align: center;
+}
+.yrthen-day {
   padding-left: 0;
-  padding-right: 25px;
+  padding-right: 5px;
 }
 
-.yrthen .yrthen-icon-cell {
+.yrthen-forecast-cell {
+  padding-left: 10px;
+  text-align: center;
+}
+.yrthen-icon-cell {
   padding-right: 10px;
   text-align: center;
 }
 
-.yrthen .yrthen-temp {
+.yrthen-temp {
   padding-left: 20px;
   padding-right: 0;
 }
 
-.yrthen .yrthen-rain {
+.yrthen-prec {
   padding-left: 20px;
   padding-right: 0;
 }

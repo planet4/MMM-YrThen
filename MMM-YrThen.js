@@ -49,6 +49,12 @@ Module.register('MMM-YrThen', {
         }, 1000);
     },
 
+    round: function(value, precision){
+        var multiplier = Math.pow(10, precision || 0);
+        var tempV = Math.round(value * multiplier) / multiplier;
+        return tempV.toFixed(precision);
+    },
+
     getDom: function() {
         var wrapper = document.createElement('div');
         if(!this.loaded){
@@ -66,7 +72,7 @@ Module.register('MMM-YrThen', {
         wrapper.classList.add = "dimmed light small";
 
         var table = document.createElement('table');
-        table.className = "xsmall yrthen yrThenForecast";
+        table.className = "xsmall yrthen-table";
 
         if(this.config.showAll == true){
             var day;
@@ -75,7 +81,7 @@ Module.register('MMM-YrThen', {
             table.appendChild(timeRow);
             for(var i = 0; i < 5; i++){
                 var newCell = document.createElement('td');
-                newCell.className = 'align-left bright xsmall';
+                newCell.className = 'align-left bright xsmall yrthen-header';
                 if(i == 0) newCell.innerHTML = '&nbsp;';
                 if(i == 1) newCell.innerHTML = this.translate("night");
                 if(i == 2) newCell.innerHTML = this.translate("morning");
@@ -121,28 +127,29 @@ Module.register('MMM-YrThen', {
                 var forecastCell = document.createElement("td");
                 forecastCell.className = "yrthen-forecast-cell";
                 var icon = document.createElement("img");
-                icon.className = "yrthen-icon ";
-                icon.width = "40";
+                icon.className = "yrthen-icon";
+//                icon.width = "40";
                 var weatherSymbol = this.calculateWeatherSymbolId(newData.symbol);
                 icon.src = this.file(printf('images/%s.svg', weatherSymbol));
                 forecastCell.appendChild(icon);
-                if(!this.config.showMaxMin){
-                    forecastCell.innerHTML += '<br>';
-                }
-                if(this.config.roundTemp) tempValue = Math.round(newData.temperature.value);
-                else tempValue = newData.temperature.value;
+                forecastCell.innerHTML += '<br>';
+                if(this.config.roundTemp) tempValue = this.round(newData.temperature.value, 0);
+                else tempValue = this.round(newData.temperature.value, 1);
                 forecastCell.innerHTML += ' <span class="bright small">' + tempValue + '</span>';
                 if(this.config.showMaxMin){
                     forecastCell.innerHTML += '<br>';
                 }
 
                 if(newData.temperature.min && newData.temperature.max && this.config.showMaxMin){
-                    forecastCell.innerHTML += '<span class="dimmed">(' + newData.temperature.max + '/' + newData.temperature.min + ')</span><br>';
+                    forecastCell.innerHTML += '<span class="dimmed">(' + this.round(newData.temperature.min, 1) + '/' + this.round(newData.temperature.max, 1) + ')</span><br>';
+                }
+                else if(!newData.temperature.min && !newData.temperature.max && this.config.showMaxMin){
+                    forecastCell.innerHTML += '<span class="dimmed">(' + this.round(newData.temperature.value, 1) + '/' + this.round(newData.temperature.value, 1) + ')</span><br>';
                 }
                 if(this.config.showPrecipitation){
                     var precValue = ' <span class="dimmed">(';
-                    if(this.config.roundPrec) precValue += Math.round(newData.precipitation.value);
-                    else precValue += newData.precipitation.value;
+                    if(this.config.roundPrec) precValue += this.round(newData.precipitation.value, 0);
+                    else precValue += this.round(newData.precipitation.value, 1);
                     if(this.config.showMaxMin){
                         precValue += ' mm';
                     }
@@ -183,13 +190,14 @@ Module.register('MMM-YrThen', {
                     iconCell.appendChild(icon);
         
                     var maxTempCell = document.createElement("td");
-                    maxTempCell.innerHTML = newData.temperature.value;
+                    if(this.config.roundTemp) maxTempCell.innerHTML = this.round(newData.temperature.value, 0);
+                    else maxTempCell.innerHTML = this.round(newData.temperature.value, 1);
                     maxTempCell.className = "align-right bright yrthen-temp small";
                     row.appendChild(maxTempCell);
 
                     var minTempCell = document.createElement("td");
-                    minTempCell.innerHTML = newData.precipitation.value;
-                    minTempCell.className = "align-right yrthen-rain dimmed";
+                    minTempCell.innerHTML = this.round(newData.precipitation.value, 1);
+                    minTempCell.className = "align-right yrthen-prec dimmed";
                     row.appendChild(minTempCell);
                 }
             }
