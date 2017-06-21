@@ -76,6 +76,11 @@ Find your location using the search form at <a href="https://www.yr.no/nb/liste/
 		<td>How many detailed forecasts to show. Default is next two periods. Only applies if showAll is false and details is true.</td>
 		<td>2</td>
 	</tr>
+		<tr>
+		<td>detailedPrec</td>
+		<td>Show detailed precipitation?</td>
+		<td>true</td>
+	</tr>
 	<tr>
 		<td>roundTemp</td>
 		<td>Round temperature to zero decimals.</td>
@@ -84,7 +89,7 @@ Find your location using the search form at <a href="https://www.yr.no/nb/liste/
 	<tr>
 		<td>roundPrec</td>
 		<td>Round precipitation to zero decimals.</td>
-		<td>2</td>
+		<td>false</td>
 	</tr>
 	<tr>
 		<td>title</td>
