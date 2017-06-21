@@ -7,8 +7,9 @@ Module.register('MMM-YrThen', {
         initialLoadDelay: 1000,
         showAll: true,
         showPrecipitation: true,
-        showMaxMin: false,
+        showMaxMin: true,
         details: true,
+        detailedPrec: true,
         numDetails: 2,
         roundTemp: true,
         roundPrec: false,
@@ -74,6 +75,7 @@ Module.register('MMM-YrThen', {
         var table = document.createElement('table');
         table.className = "xsmall yrthen-table";
 
+// SHOWING DETAILED FORECAST
         if(this.config.showAll == true){
             var day;
             var first = true;
@@ -133,24 +135,52 @@ Module.register('MMM-YrThen', {
                 icon.src = this.file(printf('images/%s.svg', weatherSymbol));
                 forecastCell.appendChild(icon);
                 forecastCell.innerHTML += '<br>';
-                if(this.config.roundTemp) tempValue = this.round(newData.temperature.value, 0);
-                else tempValue = this.round(newData.temperature.value, 1);
-                forecastCell.innerHTML += ' <span class="bright small">' + tempValue + '</span>';
+                if(this.config.roundTemp){
+                    tempValue = this.round(newData.temperature.value, 0);
+                    maxValue = this.round(newData.temperature.max, 0);
+                    minValue = this.round(newData.temperature.min, 0);
+                }
+                else{
+                    tempValue = this.round(newData.temperature.value, 1);
+                    maxValue = this.round(newData.temperature.max, 1);
+                    minValue = this.round(newData.temperature.min, 1);
+                }
                 if(this.config.showMaxMin){
-                    forecastCell.innerHTML += '<br>';
+                    if(newData.temperature.min && newData.temperature.max) forecastCell.innerHTML += '<span class="bright small">' + minValue + '-' + maxValue + '</span><br>';
+                    else forecastCell.innerHTML += ' <span class="bright small">' + tempValue + '</span><br>';
                 }
-
-                if(newData.temperature.min && newData.temperature.max && this.config.showMaxMin){
-                    forecastCell.innerHTML += '<span class="dimmed">(' + this.round(newData.temperature.min, 1) + '/' + this.round(newData.temperature.max, 1) + ')</span><br>';
-                }
-                else if(!newData.temperature.min && !newData.temperature.max && this.config.showMaxMin){
-                    forecastCell.innerHTML += '<span class="dimmed">(' + this.round(newData.temperature.value, 1) + '/' + this.round(newData.temperature.value, 1) + ')</span><br>';
+                else{
+                    forecastCell.innerHTML += ' <span class="bright small">' + tempValue + '</span>';
+                    if(this.config.showMaxMin){
+                        forecastCell.innerHTML += '<br>';
+                    }
+                    if(newData.temperature.min && newData.temperature.max && this.config.showMaxMin){
+                        forecastCell.innerHTML += '<span class="dimmed">(' + minValue + '/' + maxValue + ')</span><br>';
+                    }
+                    else if(!newData.temperature.min && !newData.temperature.max && this.config.showMaxMin){
+                        forecastCell.innerHTML += '<span class="dimmed">(' + tempValue + '/' + tempValue + ')</span><br>';
+                    }
                 }
                 if(this.config.showPrecipitation){
                     var precValue = ' <span class="dimmed">(';
-                    if(this.config.roundPrec) precValue += this.round(newData.precipitation.value, 0);
-                    else precValue += this.round(newData.precipitation.value, 1);
-                    if(this.config.showMaxMin){
+                    if(this.config.detailedPrec){
+                        if(newData.precipitation.min || newData.precipitation.max){
+                            if(this.config.roundPrec) precValue += this.round(newData.precipitation.min, 0);
+                            else precValue += this.round(newData.precipitation.min, 1);
+                            precValue += "-";
+                            if(this.config.roundPrec) precValue += this.round(newData.precipitation.max, 0);
+                            else precValue += this.round(newData.precipitation.max, 1);
+                        }
+                        else{
+                            if(this.config.roundPrec) precValue += this.round(newData.precipitation.value, 0);
+                            else precValue += this.round(newData.precipitation.value, 1);
+                        }
+                    }
+                    else {
+                        if(this.config.roundPrec) precValue += this.round(newData.precipitation.value, 0);
+                        else precValue += this.round(newData.precipitation.value, 1);
+                    }
+                    if(this.config.showMaxMin && !this.config.detailedPrec){
                         precValue += ' mm';
                     }
                     precValue += ')</span>';
@@ -160,6 +190,7 @@ Module.register('MMM-YrThen', {
             }
         }
 
+// SHOWING DAILY FORECAST
         else{
             for (var f in this.dataFromYr) {
                 var newData = this.dataFromYr[f];
